@@ -1,0 +1,25 @@
+{
+  "name": "h10-employee-tracker",
+  "version": "1.0.0",
+  "description": "manage departments, roles, and employees in the company",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mollymoo002/H10-Employee-Tracker.git"
+  },
+  "author": "Molly Singmaster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mollymoo002/H10-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/mollymoo002/H10-Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.0"
+  }
+}
