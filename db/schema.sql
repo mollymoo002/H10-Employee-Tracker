@@ -6,7 +6,7 @@ USE company_db;
 DROP TABLE IF EXISTS department;
 CREATE TABLE department (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(30),
+    name VARCHAR(30)
 );
 
 DROP TABLE IF EXISTS _role;
