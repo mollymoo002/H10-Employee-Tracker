@@ -120,4 +120,38 @@ async function listEmp() {
         console.table(results);
     });
 };
+
+async function listRole() {
+    db.query('SELECT * FROM _role', (err, results) => {
+        if (err) {
+            throw err;
+        }
+        console.table(results);
+    });
+};
 // ---------------------- Lists all data from tables -----------------------------
+
+
+// ---------------------- Updates data in tables if user chooses -----------------------------
+function addDept() {
+    inquirer
+        .prompt(addDept)
+        .then((response) => {
+            console.log(response);
+
+            db.query(`INSERT INTO department(name) VALUES ("${response.addDept}")`, (err, results) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("Department has been added");
+            })
+        });
+};
+
+
+
+// ---------------------- Updates data in tables if user chooses -----------------------------
+
+
+// export the functions I used
+module.exports = { listDept, listEmp, listRole, addDept, addEmp, addRole, updateEmployeeRole }
