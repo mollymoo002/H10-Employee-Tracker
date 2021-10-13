@@ -148,7 +148,39 @@ function addDept() {
         });
 };
 
+function addRole() {
+    choices = [];
 
+    db.query('SELECT id, name FROM department', (err, results) => {
+        if (err) {
+            throw err;
+        }
+
+        results.forEach(department => {
+            choices.push(department.name)
+        })
+
+        inquirer
+            .prompt(addRole)
+            .then((response) => {
+                let addRoleId = "";
+
+                results.forEach(department => {
+                    if (department.name === response.addRoleDept) {
+                        addRoleId = department.id;
+                    }
+                })
+
+                db.query(`INSERT INTO _role(title, salary, department_id) VALUES("${response.addRoleTitle}", "${response.addRoleSalary}", "${addRoleId}"`,
+                (err,results) => {
+                    if (err) {
+                        throw err;
+                    }
+                console.log("Role added");
+                })
+            });
+    });
+};
 
 // ---------------------- Updates data in tables if user chooses -----------------------------
 
