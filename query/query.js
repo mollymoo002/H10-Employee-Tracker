@@ -1,7 +1,9 @@
+// Needed to query the database to return data
 const db = require("../db/connection");
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 
+// ---------------------- Prompts users to choose options depending on what they selected in the main menu -----------------------------
 // This prompts the user to enter a new department and makes sure the entry is not blank
 const addDept = [
     {
@@ -93,3 +95,29 @@ const updateEmployeeRole = [
         choices: []
     },
 ];
+// ---------------------- Prompts users to choose options depending on what they selected in the main menu -----------------------------
+
+
+
+
+// ---------------------- Lists all data from tables -----------------------------
+// Selects everything in the department table and logs the results using the console.table to make it formatted
+async function listDept() {
+    db.query('SELECT * FROM department', (err, results) => {
+        if (err) {
+            throw err;
+        }
+        console.table(results);
+    });
+};
+
+// Selects everything in the employee table and logs the results using the console.table to make it formatted
+async function listEmp() {
+    db.query('SELECT * FROM employee', (err, results) => {
+        if (err) {
+            throw err;
+        }
+        console.table(results);
+    });
+};
+// ---------------------- Lists all data from tables -----------------------------
