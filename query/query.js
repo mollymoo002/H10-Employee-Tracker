@@ -182,8 +182,36 @@ function addRole() {
     });
 };
 
+function addEmployee() {
+    choices = [];
+
+    inquirer
+        .prompt(addEmployee)
+        .then((response) => {
+            employeeId = "";
+            let managerId = "";
+
+            results.forEach(data => {
+                if (data.title === response.employeeRole) {
+                    employeeId = data.role_id;
+                }
+                if (`${data.first_name} ${data.last_name}` === response.manager) {
+                    managerId = data.id
+                }
+            })
+
+            db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${response.firstName}", "${response.lastName}", ${employeeId}, ${managerId})`,
+            (err, results) => {
+                if (err) {
+                    throw err;
+                }
+                console.table(results);
+            })
+        });
+};
+
 // ---------------------- Updates data in tables if user chooses -----------------------------
 
 
 // export the functions I used
-module.exports = { listDept, listEmp, listRole, addDept, addEmp, addRole, updateEmployeeRole }
+module.exports = { listDept, listEmp, listRole, addDept, addEmployee, addRole, updateEmployeeRole }
