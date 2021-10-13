@@ -210,6 +210,50 @@ function addEmployee() {
         });
 };
 
+function updateEmployeeRole() {
+    const employeeRoleTogether = `
+    SELECT employee.first_name, employee.last_name, employee.role_id, _role.title
+    FROM employee 
+    JOIN _role ON employee.role_id = _role.id`;
+
+    empRole[0].choices = [];
+    empRole[1].choices = [];
+
+    db.query(employeeRoleTogether, (err, results) => {
+        if (err) {
+            throw err;
+        }
+
+        results.forEach(data => {
+            empRole[0].choices.push(`${data.first_name} ${data.last_name}`);
+            empRole[1].choices.push(data.title);
+        })
+
+        inquirer
+            .prompt(empRole)
+            .then((response) => {
+                let newEmpId = "";
+                let newFirstName = "";
+                let newLastName = "";
+
+                results.forEach(data => {
+                    if (data.title === response.empRole) {
+                        newEmpId = data.role_id;
+                    }
+                })
+
+                const separateName = response.empRole.split(" ");
+
+                db.query(`UPDATE employee SET role_id = ${newEmpId} WHERE employee.first_name = "${separateName[0]}" AND employee.last_name = "${separateName[1]}"`,
+                (err, results) => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.table(results);
+                })
+            });
+    });
+};
 // ---------------------- Updates data in tables if user chooses -----------------------------
 
 
