@@ -135,7 +135,7 @@ async function listRole() {
 // ---------------------- Updates data in tables if user chooses -----------------------------
 function addDept() {
     inquirer
-        .prompt(addDept)
+        .prompt(addDepartment)
         .then((response) => {
             console.log(response);
 
@@ -150,18 +150,17 @@ function addDept() {
 
 function addRole() {
     choices = [];
-
-    db.query('SELECT id, name FROM department', (err, results) => {
-        if (err) {
-            throw err;
-        }
+            db.query('SELECT id, name FROM department', (err, results) => {
+            if (err) {
+                throw err;
+            }
 
         results.forEach(department => {
             choices.push(department.name)
         })
 
         inquirer
-            .prompt(addRole)
+            .prompt(addRoles)
             .then((response) => {
                 let addRoleId = "";
 
@@ -186,7 +185,7 @@ function addEmployee() {
     choices = [];
 
     inquirer
-        .prompt(addEmployee)
+        .prompt(addEmployees)
         .then((response) => {
             employeeId = "";
             let managerId = "";
