@@ -16,11 +16,10 @@ source db/seeds.sql
 
 Afterwards, run the command node index.js and follow the prompts from there
 ## Usage
-Provide instructions and examples for use. Include screenshots as needed.
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-   ```md
-   ![alt text](assets/images/screenshot.png)
-   ```
+Please click on the image below to see a video demonstration of the application:
+
+![Screenshot](image\Capture.JPG)
+
 ## Credits
 - Ask BCS
 - Instructors

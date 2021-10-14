@@ -65,6 +65,7 @@ function init() {
                 default:
                     break;
             }
+            init();
         });
 }
 init();
