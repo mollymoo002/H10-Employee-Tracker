@@ -106,7 +106,7 @@ const updateEmployeeRoles = [
 function listDept() {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM department', (err, results) => {
-            resolve(results)
+            resolve(console.table(results))
             reject(err)
         });
     })
@@ -114,21 +114,21 @@ function listDept() {
 
 // Selects everything in the employee table and logs the results using the console.table to make it formatted
 async function listEmp() {
-    db.query('SELECT * FROM employee', (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-    });
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM employee', (err, results) => {
+            resolve(console.table(results))
+            reject(err)
+        });
+    })
 };
 
 async function listRole() {
-    db.query('SELECT * FROM _role', (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-    });
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM _role', (err, results) => {
+            resolve(console.table(results))
+            reject(err)
+        });
+    })
 };
 // ---------------------- Lists all data from tables -----------------------------
 
@@ -139,14 +139,13 @@ function addDept() {
         .prompt(addDepartment)
         .then((response) => {
             console.log(response);
-
-            db.query(`INSERT INTO department(name) VALUES ("${response.addDept}")`, (err, results) => {
-                if (err) {
-                    throw err;
-                }
-                console.log("Department has been added");
+            return new Promise((resolve, reject) => {
+                db.query(`INSERT INTO department(name) VALUES ("${response.addDept}")`, (err, results) => {
+                    resolve(console.log("Department has been added"))
+                    reject(err)
+                })
             })
-        });
+        })
 };
 
 function addRole() {
