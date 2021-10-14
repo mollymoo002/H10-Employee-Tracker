@@ -1,11 +1,11 @@
 // Needed to query the database to return data
-const db = require("../db/connection");
+const db = require("../config/connection");
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 
 // ---------------------- Prompts users to choose options depending on what they selected in the main menu -----------------------------
 // This prompts the user to enter a new department and makes sure the entry is not blank
-const addDept = [
+const addDepartment = [
     {
         type: "input",
         name: "addDept",
@@ -22,7 +22,7 @@ const addDept = [
 ];
 
 // This prompts the user to enter a new role and makes sure the entry is not blank
-const addRole = [
+const addRoles = [
     {
         type: "input",
         name: "addRole",
@@ -39,7 +39,7 @@ const addRole = [
 ];
 
 // This prompts the user to enter a new employee first and last name and makes sure the entry is not blank
-const addEmployee = [
+const addEmployees = [
     {
         type: "input",
         name: "firstName",
@@ -81,7 +81,7 @@ const addEmployee = [
     },
 ];
 
-const updateEmployeeRole = [
+const updateEmployeeRoles = [
     {
         type: "list",
         name: "updateRole",
@@ -258,4 +258,4 @@ function updateEmployeeRole() {
 
 
 // export the functions I used
-module.exports = { listDept, listEmp, listRole, addDept, addEmployee, addRole, updateEmployeeRole }
+module.exports = { listDept, listEmp, listRole, addDepartment, addDept, addEmployee, addEmployees, addRole, addRoles, updateEmployeeRole, updateEmployeeRoles }
