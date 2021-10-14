@@ -39,11 +39,11 @@ function init() {
                     break;
 
                 case "View All Roles":
-                    query.listEmp();
+                    query.listRole();
                     break;
 
                 case "View All Employees":
-                    query.listRole();
+                    query.listEmp();
                     break;
 
                 case "Add Department":
@@ -63,9 +63,9 @@ function init() {
                     break; 
                 
                 default:
-                    break;
-            }
+                    quit();
+            };
             init();
         });
-}
+};
 init();
