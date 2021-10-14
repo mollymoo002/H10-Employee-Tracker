@@ -2,6 +2,7 @@
 const db = require("../config/connection");
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+const { reject } = require("async");
 
 // ---------------------- Prompts users to choose options depending on what they selected in the main menu -----------------------------
 // This prompts the user to enter a new department and makes sure the entry is not blank
@@ -102,13 +103,13 @@ const updateEmployeeRoles = [
 
 // ---------------------- Lists all data from tables -----------------------------
 // Selects everything in the department table and logs the results using the console.table to make it formatted
-async function listDept() {
-    db.query('SELECT * FROM department', (err, results) => {
-        if (err) {
-            throw err;
-        }
-        console.table(results);
-    });
+function listDept() {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM department', (err, results) => {
+            resolve(results)
+            reject(err)
+        });
+    })
 };
 
 // Selects everything in the employee table and logs the results using the console.table to make it formatted
