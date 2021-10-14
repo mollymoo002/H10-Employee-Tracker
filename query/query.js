@@ -215,8 +215,8 @@ function updateEmployeeRole() {
     FROM employee 
     JOIN _role ON employee.role_id = _role.id`;
 
-    empRole[0].choices = [];
-    empRole[1].choices = [];
+    updateEmployeeRoles[0].choices = [];
+    updateEmployeeRoles[1].choices = [];
 
     db.query(employeeRoleTogether, (err, results) => {
         if (err) {
@@ -224,31 +224,30 @@ function updateEmployeeRole() {
         }
 
         results.forEach(data => {
-            empRole[0].choices.push(`${data.first_name} ${data.last_name}`);
-            empRole[1].choices.push(data.title);
+            updateEmployeeRoles[0].choices.push(`${data.first_name} ${data.last_name}`);
+            updateEmployeeRoles[1].choices.push(data.title);
         })
 
         inquirer
-            .prompt(empRole)
+            .prompt(updateEmployeeRoles)
             .then((response) => {
                 let newEmpId = "";
                 let newFirstName = "";
                 let newLastName = "";
 
                 results.forEach(data => {
-                    if (data.title === response.empRole) {
+                    if (data.title === response.updateEmployeeRoles) {
                         newEmpId = data.role_id;
                     }
                 })
 
-                const separateName = response.empRole.split(" ");
-
-                db.query(`UPDATE employee SET role_id = ${newEmpId} WHERE employee.first_name = "${separateName[0]}" AND employee.last_name = "${separateName[1]}"`,
-                (err, results) => {
-                    if (err) {
-                        throw err;
-                    }
-                    console.table(results);
+                const separateName = response.updateEmployeeRoles.split(" ");
+                return new Promise((resolve, reject) => {
+                    db.query(`UPDATE employee SET role_id = ${newEmpId} WHERE employee.first_name = "${separateName[0]}" AND employee.last_name = "${separateName[1]}"`,
+                    (err, results) => {
+                        resolve(console.table(results))
+                        reject(err)
+                    })
                 })
             });
     });
