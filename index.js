@@ -33,34 +33,38 @@ async function init() {
     await inquirer
         .prompt(questions)
         .then ((response) => {
-            if (response.menuList === "View All Departments") {
-                query.listDept();
-                init();
-            } 
-            if (response.menuList === "View All Roles") {
-                query.listEmp();
-                init();
-            } 
-            if (response.menuList === "View All Employees") {
-                query.listRole();
-                init();
-            } 
-            if (response.menuList === "Add Department") {
-                query.addDept();
-                init();
-            } 
-            if (response.menuList === "Add Role") {
-                query.addRole();
-                init();
-            } 
-            if (response.menuList === "Add Employee") {
-                query.addEmployee();
-                init();
-            } 
-            if (response.menuList === "Update Employee Role") {
-                query.updateEmployeeRole();
-                init();
-            }   
-        })
+            switch (response.questions) {
+                case "View All Departments":
+                    query.listDept();
+                    break;
+
+                case "View All Roles":
+                    query.listEmp();
+                    break;
+
+                case "View All Employees":
+                    query.listRole();
+                    break;
+
+                case "Add Department":
+                    query.addDept();
+                    break; 
+
+                case "Add Role":
+                    query.addRole();
+                    break; 
+
+                case "Add Employee":
+                    query.addEmployee();
+                    break; 
+
+                case "Update Employee Role":
+                    query.updateEmployeeRole();
+                    break; 
+                
+                default:
+                    break;
+            }
+            init();
+        });
 }
-init();
