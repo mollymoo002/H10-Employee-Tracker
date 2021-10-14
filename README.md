@@ -16,9 +16,9 @@ source db/seeds.sql
 
 Afterwards, run the command node index.js and follow the prompts from there
 ## Usage
-Please click on the image below to see a video demonstration of the application:
-
 ![Screenshot](image\Capture.JPG)
+
+[Please click here to see the video demonstration](https://drive.google.com/drive/folders/1vrm13diW_npORP_CpMEVtiJC2V6TEzG7?usp=sharing)
 
 ## Credits
 - Ask BCS
