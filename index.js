@@ -28,12 +28,12 @@ function quit() {
     process.exit();
 }
 
-async function init() {
-    console.log("Employee Tracker");
-    await inquirer
+function init() {
+    console.log("Welcome To Employee Tracker");
+    inquirer
         .prompt(questions)
-        .then ((response) => {
-            switch (response.questions) {
+        .then (async(response) => {
+            switch (response.menuList) {
                 case "View All Departments":
                     query.listDept();
                     break;
@@ -65,6 +65,6 @@ async function init() {
                 default:
                     break;
             }
-            init();
         });
 }
+init();
