@@ -35,24 +35,31 @@ async function init() {
         .then ((response) => {
             if (response.menuList === "View All Departments") {
                 query.listDept();
+                init();
             } 
             if (response.menuList === "View All Roles") {
                 query.listEmp();
+                init();
             } 
             if (response.menuList === "View All Employees") {
                 query.listRole();
+                init();
             } 
             if (response.menuList === "Add Department") {
                 query.addDept();
+                init();
             } 
             if (response.menuList === "Add Role") {
                 query.addRole();
+                init();
             } 
             if (response.menuList === "Add Employee") {
                 query.addEmployee();
+                init();
             } 
             if (response.menuList === "Update Employee Role") {
                 query.updateEmployeeRole();
+                init();
             }   
         })
 }

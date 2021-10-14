@@ -146,6 +146,7 @@ function addDept() {
                 console.log("Department has been added");
             })
         });
+        return;
 };
 
 function addRole() {
@@ -179,6 +180,7 @@ function addRole() {
                 })
             });
     });
+    return;
 };
 
 function addEmployee() {
@@ -207,6 +209,7 @@ function addEmployee() {
                 console.table(results);
             })
         });
+        return;
 };
 
 function updateEmployeeRole() {
@@ -252,6 +255,7 @@ function updateEmployeeRole() {
                 })
             });
     });
+    return;
 };
 // ---------------------- Updates data in tables if user chooses -----------------------------
 
